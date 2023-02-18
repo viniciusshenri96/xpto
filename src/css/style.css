@@ -1,0 +1,281 @@
+/* GOOGLE FONTS */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap");
+
+:root {
+  /* Colors */
+  --color-primary: #f9fafb;
+  --color-secondary: #14532d;
+  --color-third: #4ade80;
+  --color-fourth: #111827;
+
+  /* Font Weight */
+  --fw-regular: 400;
+  --fw-semibold: 600;
+  --fw-bold: 700;
+}
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* better for people who browse with the keyboard and know where they are on the site, so I set a different style, making it more visible, taking it from the default.
+ */
+
+*:focus-visible {
+  outline: red solid 4px;
+  outline-offset: 4px;
+}
+
+ul {
+  list-style: none;
+}
+
+a:link,
+a:visited {
+  text-decoration: none;
+  color: var(--color-primary);
+}
+
+img {
+  display: block;
+}
+
+select {
+  border: none;
+  background: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    background-attachment: initial !important;
+    transition-delay: 0s !important;
+    transition-duration: 0s !important;
+    -webkit-animation-duration: 1ms !important;
+    animation-duration: 1ms !important;
+    -webkit-animation-delay: -1ms !important;
+    animation-delay: -1ms !important;
+    -webkit-animation-iteration-count: 1 !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/**
+ * Screen Reader Class
+ * 
+ * To hide content visually.
+ *
+ * For more information: https://gist.github.com/ffoodd/000b59f431e3e64e4ce1a24d5bb36034
+ */
+.sr-only {
+  position: absolute !important;
+  margin: -1px !important;
+  -webkit-clip-path: inset(50%) !important;
+  clip-path: inset(50%) !important;
+  border: 0 !important;
+  padding: 0 !important;
+  width: 1px !important;
+  height: 1px !important;
+  overflow: hidden !important;
+  white-space: nowrap !important;
+}
+
+html {
+  overflow-x: hidden;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-fourth);
+  line-height: 1.5;
+  /* improves text rendering */
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+.container {
+  max-width: calc(1230px + 80px);
+  padding: 0 40px;
+  margin: 0 auto;
+}
+
+.content__search {
+  padding-top: 32px;
+  max-width: 848px;
+  margin: 0 auto;
+  display: grid;
+  margin-bottom: 48px;
+}
+
+.content__box-icon {
+  grid-area: 1 / 1;
+  align-self: center;
+  padding: 24px;
+}
+
+.search {
+  font: var(--fw-bold) 16px/1 "Inter", sans-serif;
+  color: var(--color-primary);
+  grid-area: 1 / 1;
+  height: 70px;
+  border: 2px solid var(--color-primary);
+  background: transparent;
+  width: 100%;
+  border-radius: 15px;
+  padding: 22px 256px 22px 80px;
+}
+
+.search::placeholder {
+  font: var(--fw-bold) 16px/1 "Inter", sans-serif;
+}
+
+.button__box {
+  grid-area: 1 / 1;
+  justify-self: end;
+  padding: 12px 16px 12px 16px;
+}
+
+.btn {
+  display: inline-block;
+  border: none;
+  background: var(--color-secondary);
+  font: var(--fw-bold) 14px/1 "Inter", sans-serif;
+  border-radius: 15px;
+  color: var(--color-primary);
+  text-transform: uppercase;
+  padding: 1rem 24px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.btn:hover {
+  background: #16a34a;
+}
+
+.content__option-box {
+  margin-bottom: 80px;
+}
+
+.content__option {
+  padding: 12px 24px;
+  font: var(--fw-bold) 14px/1 "Inter", sans-serif;
+  color: var(--color-primary);
+}
+
+.content__option option {
+  font: var(--fw-bold) 14px/1 "Inter", sans-serif;
+  color: var(--color-fourth);
+  display: grid;
+}
+
+.content__product {
+  color: var(--color-primary);
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 32px;
+  row-gap: 100px;
+  padding-bottom: 32px;
+}
+
+.content__product-box {
+  max-width: 278px;
+}
+.content__product-link {
+  position: relative;
+}
+
+.content__favorites-box {
+  background: none;
+  border: none;
+  cursor: pointer;
+  position: absolute;
+  width: 32px;
+  top: -60px;
+}
+
+.content__favorites path {
+  stroke: var(--color-primary);
+}
+
+.content__favorites-active path {
+  fill: red;
+}
+
+.content__box-img {
+  display: grid;
+  position: relative;
+}
+
+.content__img {
+  grid-area: 1 / 1;
+}
+
+.content__icon {
+  grid-area: 1 / 1;
+  place-self: end;
+  margin-right: 10px;
+  margin-bottom: 10px;
+}
+
+/* .content__box-img::after {
+  content: "Promoção";
+  font: var(--fw-bold) 14px/1.17 "Inter";
+  text-transform: uppercase;
+  color: var(--color-fourth);
+  padding: 5px 10px;
+  background-color: var(--color-third);
+  border-radius: 4px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+} */
+
+.content__box-img {
+  max-width: 278px;
+  height: 259px;
+}
+
+.content__img {
+  width: 100%;
+  height: 259px;
+  object-fit: cover;
+  border-radius: 8px 8px 0 40px;
+}
+
+.content__tag-promo,
+.content__tag-exc {
+  font: var(--fw-bold) 14px/1.17 "Inter";
+  text-transform: uppercase;
+  color: var(--color-fourth);
+  padding: 5px 10px;
+  background-color: var(--color-third);
+  border-radius: 4px;
+  position: absolute;
+  top: 10px;
+  right: 10px;
+}
+
+.content__tag-exc {
+  background-color: var(--color-fourth);
+  color: var(--color-primary);
+}
+
+.content__title {
+  margin: 12px 0;
+  font: var(--fw-bold) 24px/1 "Inter", sans-serif;
+}
+
+.content__desc {
+  font: var(--fw-regular) 14px/1.43 "Inter", sans-serif;
+  margin-bottom: 20px;
+}
+
+.content__price {
+  font: var(--fw-semibold) 24px/1.25 "Inter", sans-serif;
+}
