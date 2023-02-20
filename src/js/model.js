@@ -1,9 +1,17 @@
 export const state = {
-  favoritos: [],
+  products: [],
+  favorites: [],
+  search: {
+    query: "",
+    results: [],
+  },
 };
 
-export const controlProduct = async function () {
+export const loadProducts = async function (query, product) {
   try {
+    state.search.query = query;
+    if (product) state.search.results.push(product);
+
     const res = await fetch(`http://www.mocky.io/v2/5d3b57023000005500a2a0a6`);
     const data = await res.json();
 
@@ -11,16 +19,31 @@ export const controlProduct = async function () {
 
     const { produtos } = data;
 
-    return produtos;
+    state.products = produtos.map((data) => {
+      return {
+        decricaoCurta: data.decricaoCurta,
+        descricaoLonga: data.descricaoLonga,
+        exclusivo: data.exclusivo,
+        id: data.id,
+        imagem: data.imagem,
+        fichaTecnica: data.fichaTecnica,
+        nome: data.nome,
+        promocao: data.promocao,
+        valor: data.valor,
+      };
+    });
   } catch (err) {
     throw err;
   }
 };
 
-export const setLocalStorage = function (dataEl) {
-  state.favoritos.push(dataEl);
+export const setFullProductLocalStorage = function (dataEl) {
   if (dataEl) {
     localStorage.setItem("produtos", JSON.stringify(dataEl));
-    // localStorage.setItem("favoritos", JSON.stringify(state.favoritos));
   }
+};
+
+export const getFullProductLocalStorage = function () {
+  const storage = JSON.parse(localStorage.getItem("produtos"));
+  return storage;
 };

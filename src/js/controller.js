@@ -1,66 +1,101 @@
 import * as model from "./model.js";
 import view from "./view/view.js";
+import { DATA } from "./config.js";
 
-const controlSearch = async function () {
+// Listagem de produtos a serem vendidas
+const controlProductListing = async function () {
   try {
-    const data = await model.controlProduct();
-    // console.log(data);
-    view.render(data);
-    // console.log(data.nome);
+    view.renderSpinner();
+    await model.loadProducts();
+
+    view.render(model.state.products);
   } catch (err) {
-    console.log(err);
+    view.renderMensagemError();
   }
 };
 
-const searchResultProduct = async function () {
-  try {
-    const query = view.getQuery();
+// removendo acentuação
+function removerSpecials(search) {
+  search = search.replace(/[ÀÁÂÃÄÅ]/, "A");
+  search = search.replace(/[àáâãäå]/, "a");
+  search = search.replace(/[ÈÉÊË]/, "E");
+  search = search.replace(/[èéêë]/, "e");
+  search = search.replace(/[Ç]/, "C");
+  search = search.replace(/[ç]/, "c");
 
-    const data = await model.controlProduct();
-    data.find((data) => {
-      if (data.nome.toLowerCase() === query.toLowerCase())
-        return view.render(data);
-    });
-  } catch (err) {
-    console.log(err);
-  }
+  return search.replace(/[^a-z0-9]/gi, "");
+}
+
+// Buscar um produto específico através do seu nome
+const controlSearchResults = function () {
+  const query = view.getQuery();
+
+  DATA.find((data) => {
+    const dataNomeNew = removerSpecials(data.nome);
+    if (
+      removerSpecials(dataNomeNew.toLowerCase()) ===
+      removerSpecials(query.toLowerCase())
+    ) {
+      model.loadProducts(query, data);
+
+      return view.render(data);
+    }
+  });
 };
 
-const controlOption = async function (opt) {
-  const data = await model.controlProduct();
+// Filtrando produtos
+const controlFilterProduct = function (opt) {
   if (opt === "todos") {
-    return view.render(data);
+    return view.render(DATA);
   }
   if (opt === "exclusivo") {
-    const dataOpt = data.filter((data) => {
+    const dataOpt = DATA.filter((data) => {
       if (data.exclusivo) return data;
     });
     return view.render(dataOpt);
   }
   if (opt === "promocao") {
-    const dataOpt = data.filter((data) => {
+    const dataOpt = DATA.filter((data) => {
       if (data.promocao) return data;
     });
     return view.render(dataOpt);
   }
 };
 
-const controlFullProduct = function (dataEl) {
-  model.setLocalStorage(dataEl);
+// Renderizando produtos com mais detalhes em outra página
+const controlFullProduct = function (dataset) {
+  DATA.find((data) => {
+    if (data.id === dataset) return model.setFullProductLocalStorage(data);
+  });
 };
 
-const controlAddFavorites = async function () {
-  const data = await model.controlProduct();
-  view.render(data);
+// Salvando produtos no localStorage para serem recuperados e renderizando na página produto.html
+const getDataLocalStorage = function () {
+  view.renderFullProduct(model.getFullProductLocalStorage());
 };
 
-const init = async function () {
-  const data = await model.controlProduct();
-  view.addHandleSeach(searchResultProduct);
-  view.addHandleOptions(controlOption);
-  view.addHadleFullProduct(controlFullProduct, data);
-  view.addHandlerFavorites(controlAddFavorites, data);
-  // view.default.addHandlerSeatch(controlSearch);
-  controlSearch();
+// Selecionando favoritos
+const controlAddFavorites = function (dataset, clicked) {
+  const dataFavorito = DATA.find((data) => {
+    if (data.id === dataset) {
+      return data;
+    }
+  });
+
+  if (!dataFavorito.isFavorito) {
+    dataFavorito.isFavorito = true;
+  } else dataFavorito.isFavorito = false;
+
+  view.renderButtonFavorite(dataFavorito, clicked);
+};
+
+// Estado inicial
+const init = function () {
+  view.addHandlerSeach(controlSearchResults);
+  view.addHandlerOptions(controlFilterProduct);
+  view.addHandlerFullProduct(controlFullProduct);
+  view.addHandlerFavorites(controlAddFavorites);
+  controlProductListing();
+  getDataLocalStorage();
 };
 init();
