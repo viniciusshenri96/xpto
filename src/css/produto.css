@@ -21,6 +21,10 @@
   top: -3.75rem;
 }
 
+.product__content .content__favorites path {
+  stroke: var(--color-primary);
+}
+
 .content__box-img {
   max-width: 37.5rem;
   height: 37.5rem;

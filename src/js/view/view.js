@@ -90,6 +90,7 @@ class ViewApp {
   }
 
   renderFullProduct(storage) {
+    console.log(storage.id);
     if (window.location.pathname === "/produto.html") {
       const markup = `
       <div class="product__content" data-opt="">
@@ -97,7 +98,9 @@ class ViewApp {
         storage.id
       }" type="button" class="content__favorites-box">
             <svg class="${
-              storage.isFavorito ? "content__favorites-active" : ""
+              storage.isFavorite
+                ? "content__favorites-active"
+                : "content__favorites"
             } " aria-colspan="content__favorites-icon" fill="none"
               viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
               <path stroke-linecap="round" stroke-linejoin="round"
@@ -179,8 +182,8 @@ class ViewApp {
       <button data-opt="${
         data.id
       }" type="button" class="content__favorites-box">
-            <svg class="${
-              data.isFavorito
+            <svg aria-hidden='true' class="${
+              data.isFavorite
                 ? "content__favorites-active"
                 : "content__favorites"
             }" aria-colspan="content__favorites-icon" fill="none"
@@ -197,8 +200,8 @@ class ViewApp {
   renderButtonFavorite(data, clicked) {
     const markup = `
     <button data-opt="${data.id}" type="button" class="content__favorites-box">
-       <svg class="${
-         data.isFavorito ? "content__favorites-active" : "content__favorites"
+       <svg aria-hidden='true' class="${
+         data.isFavorite ? "content__favorites-active" : "content__favorites"
        }" aria-colspan="content__favorites-icon" fill="none"
          viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-6 h-6">
          <path stroke-linecap="round" stroke-linejoin="round"

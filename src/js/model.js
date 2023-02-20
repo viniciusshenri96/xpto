@@ -12,7 +12,7 @@ export const loadProducts = async function (query, product) {
     state.search.query = query;
     if (product) state.search.results.push(product);
 
-    const res = await fetch(`http://www.mocky.io/v2/5d3b57023000005500a2a0a6`);
+    const res = await fetch(`https://www.mocky.io/v2/5d3b57023000005500a2a0a6`);
     const data = await res.json();
 
     if (!res.ok) throw new Error(`${data.message} (${res.status})`);

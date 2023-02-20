@@ -78,13 +78,14 @@ const getDataLocalStorage = function () {
 const controlAddFavorites = function (dataset, clicked) {
   const dataFavorito = DATA.find((data) => {
     if (data.id === dataset) {
+      model.setFullProductLocalStorage(data);
       return data;
     }
   });
 
-  if (!dataFavorito.isFavorito) {
-    dataFavorito.isFavorito = true;
-  } else dataFavorito.isFavorito = false;
+  if (!dataFavorito.isFavorite) {
+    dataFavorito.isFavorite = true;
+  } else dataFavorito.isFavorite = false;
 
   view.renderButtonFavorite(dataFavorito, clicked);
 };
