@@ -1,0 +1,356 @@
+/* GOOGLE FONTS */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap");
+
+:root {
+  /* Colors */
+  --color-primary: #f9fafb;
+  --color-secondary: #14532d;
+  --color-third: #4ade80;
+  --color-fourth: #111827;
+
+  /* Font Weight */
+  --fw-regular: 400;
+  --fw-semibold: 600;
+  --fw-bold: 700;
+}
+
+*,
+*::after,
+*::before {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* better for people who browse with the keyboard and know where they are on the site, so I set a different style, making it more visible, taking it from the default.
+ */
+
+*:focus-visible {
+  outline: var(--color-third) solid 4px;
+  outline-offset: 4px;
+}
+
+ul {
+  list-style: none;
+}
+
+a:link,
+a:visited {
+  text-decoration: none;
+  color: var(--color-primary);
+}
+
+img {
+  display: block;
+}
+
+select {
+  border: none;
+  background: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    background-attachment: initial !important;
+    transition-delay: 0s !important;
+    transition-duration: 0s !important;
+    -webkit-animation-duration: 1ms !important;
+    animation-duration: 1ms !important;
+    -webkit-animation-delay: -1ms !important;
+    animation-delay: -1ms !important;
+    -webkit-animation-iteration-count: 1 !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/**
+ * Screen Reader Class
+ * 
+ * To hide content visually.
+ *
+ * For more information: https://gist.github.com/ffoodd/000b59f431e3e64e4ce1a24d5bb36034
+ */
+.sr-only {
+  position: absolute !important;
+  margin: -1px !important;
+  -webkit-clip-path: inset(50%) !important;
+  clip-path: inset(50%) !important;
+  border: 0 !important;
+  padding: 0 !important;
+  width: 1px !important;
+  height: 1px !important;
+  overflow: hidden !important;
+  white-space: nowrap !important;
+}
+
+html {
+  overflow-x: hidden;
+}
+
+body {
+  font-family: Arial, Helvetica, sans-serif;
+  background: var(--color-fourth);
+  line-height: 1.5;
+  /* improves text rendering */
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+.container {
+  max-width: 81.875rem;
+  padding: 0 2.5rem;
+  margin: 0 auto;
+}
+
+/* reusable classes */
+.font-1 {
+  font: var(--fw-bold) 1rem/1 "Inter", sans-serif;
+}
+
+.font-2 {
+  font: var(--fw-bold) 0.875rem/1 "Inter", sans-serif;
+}
+
+.content__search {
+  padding: 2rem 2.5rem 0 2.5rem;
+  max-width: 53rem;
+  margin: 0 auto;
+  display: grid;
+  margin-bottom: 3rem;
+}
+
+.content__box-icon {
+  grid-area: 1 / 1;
+  align-self: center;
+  padding: 1.5rem;
+  max-width: max-content;
+}
+
+.search {
+  color: var(--color-primary);
+  grid-area: 1 / 1;
+  height: 4.375rem;
+  border: 0.125rem solid var(--color-primary);
+  background: transparent;
+  width: 100%;
+  border-radius: 0.938rem;
+  padding: 1.375rem 10rem 1.375rem 5rem;
+}
+
+.button__box {
+  grid-area: 1 / 1;
+  justify-self: end;
+  padding: 0.75rem 1rem 0.75rem 1rem;
+}
+
+.btn {
+  display: inline-block;
+  border: none;
+  background: var(--color-secondary);
+  border-radius: 15px;
+  color: var(--color-primary);
+  text-transform: uppercase;
+  padding: 1rem 1.5rem;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.btn:hover {
+  background: #16a34a;
+}
+
+.content__option-box {
+  margin-bottom: 5rem;
+}
+
+.content__option {
+  padding: 0.75rem 1.5rem;
+  color: var(--color-primary);
+}
+
+.content__option option {
+  color: var(--color-fourth);
+  display: grid;
+}
+
+.content__product {
+  color: var(--color-primary);
+  display: flex;
+  flex-wrap: wrap;
+  column-gap: 2rem;
+  row-gap: 6.25rem;
+  padding-bottom: 2rem;
+}
+
+.content__product-box {
+  max-width: 17.375rem;
+  display: grid;
+  align-content: start;
+  height: 100%;
+}
+.content__product-link {
+  position: relative;
+}
+
+.content__favorites-box {
+  background: none;
+  border: none;
+  cursor: pointer;
+  position: absolute;
+  width: 2rem;
+  top: -3.75rem;
+}
+
+.content__favorites path {
+  stroke: var(--color-primary);
+}
+
+.content__favorites-active path {
+  stroke: var(--color-primary);
+  fill: red;
+}
+
+.content__box-img {
+  display: grid;
+  position: relative;
+}
+
+.content__info-product {
+  display: grid;
+}
+
+.content__img {
+  grid-area: 1 / 1;
+}
+
+.content__icon {
+  grid-area: 1 / 1;
+  place-self: end;
+  margin-right: 0.625rem;
+  margin-bottom: 0.625rem;
+}
+
+.content__box-img {
+  max-width: 17.375rem;
+  height: 16.188rem;
+  margin-bottom: 20px;
+}
+
+.content__img {
+  width: 100%;
+  height: inherit;
+  object-fit: cover;
+  border-radius: 0.5rem 0.5rem 0 2.5rem;
+}
+
+.content__tag-promo,
+.content__tag-exc {
+  font: var(--fw-bold) 0.875rem/1.17 "Inter";
+  text-transform: uppercase;
+  color: var(--color-fourth);
+  padding: 0.313rem 0.625rem;
+  background-color: var(--color-third);
+  border-radius: 4px;
+  position: absolute;
+  top: 0.625rem;
+  right: 0.625rem;
+}
+
+.content__tag-exc {
+  background-color: var(--color-fourth);
+  color: var(--color-primary);
+}
+
+.content__title {
+  /* margin: 0.75rem 0; */
+  margin-bottom: 0.75rem;
+  font: var(--fw-bold) 1.4rem/1 "Inter", sans-serif;
+}
+
+.content__desc {
+  height: 60px;
+  font: var(--fw-regular) 0.875rem/1.43 "Inter", sans-serif;
+  margin-bottom: 1.25rem;
+}
+
+.content__price {
+  font: var(--fw-semibold) 1.5rem/1.25 "Inter", sans-serif;
+  align-self: end;
+}
+
+.spinner {
+  margin: 5rem auto;
+  text-align: center;
+}
+
+.spinner svg {
+  height: 4rem;
+  width: 4rem;
+  fill: var(--color-third);
+  animation: rotate 2s infinite linear;
+}
+
+@keyframes rotate {
+  0% {
+    transform: rotate(0);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.error {
+  max-width: 40rem;
+  margin: 0 auto;
+  padding: 5rem 4rem;
+  display: flex;
+}
+
+.error svg {
+  height: 3rem;
+  width: 3rem;
+  fill: var(--color-third);
+  transform: translateY(-0.3rem);
+}
+
+.error p {
+  margin-left: 1.5rem;
+  font-size: 1.8rem;
+  line-height: 1.5;
+  font-weight: var(--fw-semibold);
+}
+
+@media (max-width: 550px) {
+  .content__product {
+    justify-content: center;
+  }
+
+  .search {
+    padding: 1.375rem 5rem 1.375rem 2.813rem;
+  }
+
+  .search::placeholder {
+    font-size: 0.625rem;
+  }
+
+  .content__box-icon {
+    padding: 0.75rem;
+  }
+
+  .btn {
+    display: inline-block;
+    border: none;
+    background: var(--color-secondary);
+    font: var(--fw-bold) 8px/1 "Inter", sans-serif;
+    border-radius: 0.938rem;
+    color: var(--color-primary);
+    text-transform: uppercase;
+    padding: 1rem;
+    cursor: pointer;
+    transition: all 0.3s;
+  }
+}
