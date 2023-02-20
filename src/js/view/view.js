@@ -70,27 +70,36 @@ class ViewApp {
     }
   }
 
+  addFavoritesFunction(handler, parent) {
+    const userEvents = ["touchstart", "click"];
+
+    userEvents.forEach((event) => {
+      parent.addEventListener(event, function (e) {
+        const clickedButton = e.target.closest(".content__favorites-box");
+
+        if (clickedButton) {
+          e.preventDefault();
+          const dataset = clickedButton.dataset.opt;
+          if (!dataset) return;
+          handler(+dataset, clickedButton);
+        }
+      });
+    });
+  }
+
   addHandlerFavorites(handler) {
     if (this._parentEl) {
-      const userEvents = ["touchstart", "click"];
+      this.addFavoritesFunction(handler, this._parentEl);
+    }
+  }
 
-      userEvents.forEach((event) => {
-        this._parentEl.addEventListener(event, function (e) {
-          const clickedButton = e.target.closest(".content__favorites-box");
-
-          if (clickedButton) {
-            e.preventDefault();
-            const dataset = clickedButton.dataset.opt;
-            if (!dataset) return;
-            handler(+dataset, clickedButton);
-          }
-        });
-      });
+  addHandlerFavoritesPageProduct(handler) {
+    if (window.location.pathname === "/produto.html") {
+      this.addFavoritesFunction(handler, this._parentProduto);
     }
   }
 
   renderFullProduct(storage) {
-    console.log(storage.id);
     if (window.location.pathname === "/produto.html") {
       const markup = `
       <div class="product__content" data-opt="">

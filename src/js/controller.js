@@ -95,6 +95,7 @@ const init = function () {
   view.addHandlerSeach(controlSearchResults);
   view.addHandlerOptions(controlFilterProduct);
   view.addHandlerFullProduct(controlFullProduct);
+  view.addHandlerFavoritesPageProduct(controlAddFavorites);
   view.addHandlerFavorites(controlAddFavorites);
   controlProductListing();
   getDataLocalStorage();
